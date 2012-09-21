@@ -1,0 +1,5 @@
+tmp
+tmp/*
+.DS_Store
+public/javascripts/*
+!public/javascripts/libs
