@@ -1,10 +1,10 @@
-## Example
+# coffee-invaders
 
-You can find an example here: https://github.com/cykod/AlienInvaders
+space invaders html5 + coffescript game (no external libs)
+__Currently in development__
 
-## Set up development env
 
-#### The local server (apache alternative)
+### Set up development env
 
 Install pow and then install the powder gem
 
@@ -22,3 +22,5 @@ Than browse to http://faceinvaders.dev/
 
       sh tmp/watch_coffescripts.sh
 
+
+ref: https://github.com/cykod/AlienInvaders
