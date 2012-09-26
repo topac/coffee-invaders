@@ -1,17 +1,12 @@
-class fi.Player
-  @data = {url: 'images/sprites.png', sx: 0,  sy: 36, w: 26, h: 17, cls: Player}
-  @missilesInAir = 0
+class fi.Player extends fi.BoardObject
+  @dimensions 26, 17
 
   constructor: (game)->
-    @game = game
+    @spriteData = {url: 'images/sprites.png', sx: 0,  sy: 36}
     @speeed = 40
-    @reloading = 20
-    @sprite = new fi.Sprite @game, fi.Player.data
-    @x = 0
-    @y = 0
-    @w = @sprite.options.w
-    @h = @sprite.options.h
-    @dx = @game.width / 5
+    @reloading = 40
+    @dx = game.width / 5
+    super
 
   launchMissile: ->
     @reloading = 10
@@ -21,14 +16,11 @@ class fi.Player
       player: @
       dy: -100
 
-  draw: ->
-    @sprite.draw @x, @y
-
   step: ->
     @x -= @dx * @game.interval if @game.keyboard.isKeyPressed 'left'
     @x += @dx * @game.interval if @game.keyboard.isKeyPressed 'right'
     @x = 0 if @x < 0
     @x = @game.width-@w if @x > @game.width - @w
     @reloading -= 1
-    if @game.keyboard.isKeyPressed('fire') && @reloading <= 0 #&& this.board.missiles < 3
+    if @game.keyboard.isKeyPressed('fire') && @reloading <= 0
       @launchMissile()
