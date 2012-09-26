@@ -2,8 +2,8 @@ $ ->
   fi.game = new fi.Game '#gameboard'
 
   fi.game.loadBoard fi.MessageBoard,
-    title: "Face Invaders"
-    subtitle: "asd asd asd"
+    title: "coffee-invaders"
+    subtitle: "THE GAME"
     onFirePressed: ->
       fi.game.loadBoard fi.GameBoard, 1
 
