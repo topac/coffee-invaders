@@ -1,16 +1,14 @@
-class fi.Missile
-  @data = {url: 'images/sprites.png', sx: 0,  sy: 86, w: 3,  h: 14, cls: Missile}
+class fi.Missile extends fi.BoardObject
+  @dimensions 3, 14
+  @sprite 'images/sprites.png', 0, 86
 
   constructor: (game)->
     @game = game
     @player = null
-    @sprite = new fi.Sprite @game, fi.Missile.data
     @dy = 0
     @x = 0
     @y = 0
-
-  draw: ->
-    @sprite.draw @x, @y
+    super
 
   step: ->
     @y += @dy * @game.interval

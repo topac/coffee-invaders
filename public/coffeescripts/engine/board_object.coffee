@@ -1,19 +1,11 @@
-class fi.BoardObject
-  _classesData = []
-
-  @classAttributes: (data)->
-    for classData in _classesData
-      return Object.merge(classData, data) if @ is classData.func
-    _classesData.push Object.merge({func: @}, data)
-
+class fi.BoardObject extends fi.ClassAttributes
   @sprite: (url, sx, sy)->
-    @classAttributes {url: url, sx: sx, sy: sy}
+    @classAttributes url: url, sx: sx, sy: sy
 
   @dimensions: (w, h)->
     @width = w
     @height = h
-    # _addClassesData @, {width: w, height: h}
-    @classAttributes {width: w, height: h}
+    @classAttributes width: w, height: h
 
   constructor: (game)->
     dimensions = null
@@ -29,12 +21,6 @@ class fi.BoardObject
 
   draw: ->
     @_drawAt @x, @y
-
-  class: ->
-    return @_class if @_class
-    for data in _classesData
-      return @_class = data if @ instanceof data.func
-    null
 
   _loadImage: ->
     @image = new Image()

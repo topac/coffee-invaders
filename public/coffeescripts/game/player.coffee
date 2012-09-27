@@ -11,7 +11,7 @@ class fi.Player extends fi.BoardObject
   launchMissile: ->
     @reloading = 10
     @game.board.addObject fi.Missile,
-      x: @x + @w/2 - fi.Missile.data.w/2
+      x: @x + @w/2 - fi.Missile.width/2
       y: @y - @h
       player: @
       dy: -100
