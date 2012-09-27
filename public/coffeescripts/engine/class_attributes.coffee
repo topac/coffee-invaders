@@ -13,7 +13,6 @@ class fi.ClassAttributes
 
   class: ->
     return @_class if @_class
-    puts "asd"
     for object in _classesAttributes
       return @_class = object if @ instanceof object.__class
     null
