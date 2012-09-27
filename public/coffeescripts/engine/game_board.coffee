@@ -11,20 +11,21 @@ class fi.GameBoard extends fi.Board
   laodLevel: (level={})->
     @player = @addObject fi.Player,
       x: @game.width/2
-      y: @game.height - fi.Player.data.h - 10
+      y: @game.height - fi.Player.height - 10
 
   load: (level)->
-    console.log "loading game board"
     @laodLevel level
 
   foreachObject: (callback)->
     for object in @objects
       callback object
 
+  clearBoard: ->
+    @game.canvas.clearRect 0, 0, @game.width, @game.height
+
   step: ->
     @foreachObject (object)-> object.step()
 
   render: ->
-    @game.canvas.clearRect(0, 0, @game.width, @game.height)
-    # this.iterate(function() { this.draw(canvas); });
+    @clearBoard()
     @foreachObject (object)-> object.draw()
