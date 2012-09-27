@@ -1,8 +1,8 @@
 class fi.Player extends fi.BoardObject
   @dimensions 26, 17
+  @sprite 'images/sprites.png', 0, 36
 
   constructor: (game)->
-    @spriteData = {url: 'images/sprites.png', sx: 0,  sy: 36}
     @speeed = 40
     @reloading = 40
     @dx = game.width / 5
