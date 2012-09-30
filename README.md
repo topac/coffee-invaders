@@ -1,6 +1,7 @@
 # coffee-invaders
 
 space invaders html5 + coffescript game (no external libs)
+
 __Currently in development__
 
 
@@ -15,7 +16,7 @@ move to the app path and type
       powder link
       powder always_restart
 
-Than browse to http://faceinvaders.dev/
+Than browse to http://your_folder_name.dev/
 
 
 #### Coffescript compiler
