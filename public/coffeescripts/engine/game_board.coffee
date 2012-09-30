@@ -8,13 +8,14 @@ class fi.GameBoard extends fi.Board
     @objects.push object
     object
 
-  laodLevel: (level={})->
+  removeObject: (object)->
+    index = @objects.indexOf object
+    @objects.splice index, 1
+
+  load: (level)->
     @player = @addObject fi.Player,
       x: @game.width/2
       y: @game.height - fi.Player.height - 10
-
-  load: (level)->
-    @laodLevel level
 
   foreachObject: (callback)->
     for object in @objects
