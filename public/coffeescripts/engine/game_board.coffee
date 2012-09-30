@@ -9,8 +9,7 @@ class fi.GameBoard extends fi.Board
     object
 
   removeObject: (object)->
-    index = @objects.indexOf object
-    @objects.splice index, 1
+    @objects.remove object
 
   load: (level)->
     @player = @addObject fi.Player,
@@ -19,7 +18,8 @@ class fi.GameBoard extends fi.Board
 
   foreachObject: (callback)->
     for object in @objects
-      callback object
+      callback object if object != undefined
+    null
 
   clearBoard: ->
     @game.canvas.clearRect 0, 0, @game.width, @game.height
