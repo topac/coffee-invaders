@@ -1,15 +1,15 @@
 class fi.Player extends fi.BoardObject
   @dimensions 26, 17
   @sprite 'images/sprites.png', 0, 36
+  @classAttributes {missilesDelay: 10}
 
   constructor: ->
-    @speeed = 40
-    @reloading = 40
+    @reloading = @class().missilesDelay
     super
-    @dx = @game.width / 5
+    @speed = @game.width / 5
 
   launchMissile: ->
-    @reloading = 10
+    @reloading = @class().missilesDelay
     @game.board.addObject fi.Missile,
       x: @x + @w/2 - fi.Missile.width/2
       y: @y - @h
@@ -17,8 +17,8 @@ class fi.Player extends fi.BoardObject
       dy: -100
 
   step: ->
-    @x -= @dx * @game.interval if @game.keyboard.isKeyPressed 'left'
-    @x += @dx * @game.interval if @game.keyboard.isKeyPressed 'right'
+    @x -= @speed * @game.interval if @game.keyboard.isKeyPressed 'left'
+    @x += @speed * @game.interval if @game.keyboard.isKeyPressed 'right'
     @x = 0 if @x < 0
     @x = @game.width-@w if @x > @game.width - @w
     @reloading -= 1
