@@ -1,9 +1,7 @@
 class fi.Alien extends fi.BoardObject
   @dimensions 23, 18
   @sprite 'images/sprites.png', 0, 0
-
-  @classAttributes
-    margin: 50
+  @classAttributes {margin: 50}
 
   constructor: ->
     @speed = 20
@@ -13,7 +11,8 @@ class fi.Alien extends fi.BoardObject
     @frame = 0
     super
 
-  isCloseToBorders: -> @x < @class().margin || @x > (@game.width - @class().margin)
+  isCloseToBorders: ->
+    @x < @class().margin || @x > (@game.width - @class().margin)
 
   switchHorizontalDirection: ->
     @y += @height
