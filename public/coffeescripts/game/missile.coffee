@@ -2,12 +2,9 @@ class fi.Missile extends fi.BoardObject
   @dimensions 3, 14
   @sprite 'images/sprites.png', 0, 86
 
-  constructor: (game)->
-    @game = game
+  constructor: ->
     @player = null
     @dy = 0
-    @x = 0
-    @y = 0
     super
 
   step: ->
@@ -21,5 +18,5 @@ class fi.Missile extends fi.BoardObject
 
     @die() if @isFarAway()
 
-  isFarAway :->
+  isFarAway: ->
     @y < 0 || @y > @game.height
