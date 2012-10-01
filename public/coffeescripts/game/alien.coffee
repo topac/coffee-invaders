@@ -16,9 +16,6 @@ class fi.Alien extends fi.BoardObject
 
     super
 
-  draw: ->
-    @_drawAt @x, @y
-
   die: ->
     @game.board.removeObject @
 

@@ -21,15 +21,12 @@ class fi.BoardObject extends fi.ClassAttributes
     @_loadImage()
     @game = game
 
-  draw: ->
-    @_drawAt @x, @y
-
   _loadImage: ->
     @image = new Image()
     @image.onload = => @image_loaded = true
     @image.src = @class().url
 
-  _drawAt: (x, y, frame=0)->
+  draw: (x=@x, y=@y, frame=@frame)->
     return unless @image_loaded
     frame = 0 unless frame
     if @image_loaded
