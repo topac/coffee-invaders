@@ -33,6 +33,7 @@ class fi.Loader
     define 'mod4', [
       'javascripts/game/player.js',
       'javascripts/game/missile.js'
+      'javascripts/game/alien.js'
     ]
 
   @_loadModulesInOrder: (orderedModuleNames)->
