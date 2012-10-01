@@ -26,6 +26,9 @@ class fi.BoardObject extends fi.ClassAttributes
     @image.onload = => @image_loaded = true
     @image.src = @class().url
 
+  die: ->
+    @game.board.removeObject @
+
   draw: (x=@x, y=@y, frame=@frame)->
     return unless @image_loaded
     frame = 0 unless frame

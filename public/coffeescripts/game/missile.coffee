@@ -10,9 +10,6 @@ class fi.Missile extends fi.BoardObject
     @y = 0
     super
 
-  die: ->
-    @game.board.removeObject @
-
   step: ->
     @y += @dy * @game.interval
     @x = 0 if @x < 0

@@ -16,9 +16,6 @@ class fi.Alien extends fi.BoardObject
 
     super
 
-  die: ->
-    @game.board.removeObject @
-
   isCloseToBorders: ->
     distance = @width * 2
     @x < distance || @x > (@game.width - distance)
