@@ -3,7 +3,6 @@ class fi.Alien extends fi.BoardObject
   @sprite 'images/sprites.png', 0, 0
 
   @classAttributes
-    speed: 20
     margin: 50
 
   constructor: (game)->
@@ -11,6 +10,7 @@ class fi.Alien extends fi.BoardObject
     @dy = 0
     @x = 0
     @y = 0
+    @speed = 20
 
     @horizontalDirection = 1
     @movingDownStep = false
@@ -30,7 +30,7 @@ class fi.Alien extends fi.BoardObject
     @movingDownStep = true
 
   step: ->
-    @mx += @game.interval * @class().speed * @horizontalDirection
+    @mx += @game.interval * @speed * @horizontalDirection
 
     if Math.abs(@mx) > 10
       if !@movingDownStep and @isCloseToBorders()
