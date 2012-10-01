@@ -17,7 +17,11 @@ class fi.Missile extends fi.BoardObject
     @y += @dy * @game.interval
     @x = 0 if @x < 0
     @x = @game.width-@w if @x > @game.width - @w
+
     # TODO handle collision with aliens
+    alien = @game.board.collide @
+    alien.die() if alien
+
     @die() if @isFarAway()
 
   isFarAway :->

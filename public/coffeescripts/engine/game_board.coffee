@@ -16,6 +16,10 @@ class fi.GameBoard extends fi.Board
       x: @game.width/2
       y: @game.height - fi.Player.height - 10
 
+    @addObject fi.Alien,
+      x: @game.width/2
+      y: @game.height/10
+
   foreachObject: (callback)->
     for object in @objects
       callback object if object != undefined
@@ -30,3 +34,11 @@ class fi.GameBoard extends fi.Board
   render: ->
     @clearBoard()
     @foreachObject (object)-> object.draw()
+
+  collision: (o1, o2)->
+    !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) || (o1.x+o1.w-1<o2.x) || (o1.x>o2.x+o2.w-1))
+
+  collide: (objectA)->
+    @objects.find (objectB)=>
+      if objectA !=  objectB#&& !objectB.invulnrable
+       return @collision(objectA, objectB) ? objectB : false
