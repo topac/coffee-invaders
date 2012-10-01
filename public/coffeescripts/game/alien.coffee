@@ -5,19 +5,12 @@ class fi.Alien extends fi.BoardObject
   @classAttributes
     margin: 50
 
-  constructor: (game)->
-    @game = game
-    @dy = 0
-    @x = 0
-    @y = 0
+  constructor: ->
     @speed = 20
-
     @horizontalDirection = 1
     @movingDownStep = false
-
     @mx = 0
     @frame = 0
-
     super
 
   isCloseToBorders: ->
