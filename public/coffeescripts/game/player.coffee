@@ -5,8 +5,8 @@ class fi.Player extends fi.BoardObject
   constructor: ->
     @speeed = 40
     @reloading = 40
-    @dx = game.width / 5
     super
+    @dx = @game.width / 5
 
   launchMissile: ->
     @reloading = 10
