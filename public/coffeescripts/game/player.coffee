@@ -2,7 +2,7 @@ class fi.Player extends fi.BoardObject
   @dimensions 26, 17
   @sprite 'images/sprites.png', 0, 36
 
-  constructor: (game)->
+  constructor: ->
     @speeed = 40
     @reloading = 40
     @dx = game.width / 5
