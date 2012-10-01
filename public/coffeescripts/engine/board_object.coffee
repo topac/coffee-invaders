@@ -5,6 +5,8 @@ class fi.BoardObject extends fi.ClassAttributes
   @dimensions: (w, h)->
     @width = w
     @height = h
+    @w = w
+    @h = h
     @classAttributes width: w, height: h
 
   constructor: (game)->
