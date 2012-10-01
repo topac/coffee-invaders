@@ -2,6 +2,10 @@ class fi.Alien extends fi.BoardObject
   @dimensions 23, 18
   @sprite 'images/sprites.png', 0, 0
 
+  @classAttributes
+    speed: 20
+    margin: 50
+
   constructor: (game)->
     @game = game
     @dy = 0
@@ -17,7 +21,7 @@ class fi.Alien extends fi.BoardObject
     super
 
   isCloseToBorders: ->
-    distance = @width * 2
+    distance = @class().margin
     @x < distance || @x > (@game.width - distance)
 
   switchHorizontalDirection: ->
@@ -26,18 +30,14 @@ class fi.Alien extends fi.BoardObject
     @movingDownStep = true
 
   step: ->
-    @mx += @game.interval * 20 * @horizontalDirection
+    @mx += @game.interval * @class().speed * @horizontalDirection
 
     if Math.abs(@mx) > 10
-
       if !@movingDownStep and @isCloseToBorders()
         @switchHorizontalDirection()
       else
         @x += @mx
         @movingDownStep = false
-      # else
-      #   @x += @mx
-      #   @movingDownStep = false
 
       @mx = 0
       # TODO launch some missiles sometimes
