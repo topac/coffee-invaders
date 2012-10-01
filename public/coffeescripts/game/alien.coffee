@@ -13,25 +13,24 @@ class fi.Alien extends fi.BoardObject
     @frame = 0
     super
 
-  isCloseToBorders: ->
-    distance = @class().margin
-    @x < distance || @x > (@game.width - distance)
+  isCloseToBorders: -> @x < @class().margin || @x > (@game.width - @class().margin)
 
   switchHorizontalDirection: ->
     @y += @height
     @horizontalDirection *= -1
     @movingDownStep = true
 
+  shouldMove: ->
+    Math.abs(@mx) > 10
+
   step: ->
     @mx += @game.interval * @speed * @horizontalDirection
-
-    if Math.abs(@mx) > 10
+    if @shouldMove()
       if !@movingDownStep and @isCloseToBorders()
         @switchHorizontalDirection()
       else
         @x += @mx
         @movingDownStep = false
-
       @mx = 0
       # TODO launch some missiles sometimes
       # if(this.y == this.flock.max_y[this.x]) {this.fireSometimes();}
