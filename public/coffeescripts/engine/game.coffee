@@ -5,7 +5,7 @@ class fi.Game
     @width = @canvasEl.width()
     @height = @canvasEl.height()
     @keyboard = new fi.Keyboard()
-    @interval = 30/1000
+    @interval = 23/1000
 
   loadBoard: (BoardClassName, options)->
     @board = new BoardClassName(@)

@@ -1,15 +1,15 @@
 class fi.Player extends fi.BoardObject
   @dimensions 26, 17
   @sprite 'images/sprites.png', 0, 36
-  @classAttributes {missilesDelay: 10}
 
   constructor: ->
-    @reloading = @class().missilesDelay
     super
-    @speed = @game.width / 5
+    @missilesDelay = @game.interval + 40
+    @reloading = @missilesDelay
+    @speed = @game.interval + 30
 
   launchMissile: ->
-    @reloading = @class().missilesDelay
+    @reloading = @missilesDelay
     @game.board.addObject fi.Missile,
       x: @x + @w/2 - fi.Missile.width/2
       y: @y - @h
