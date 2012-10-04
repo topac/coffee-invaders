@@ -35,5 +35,5 @@ class fi.BoardObject extends fi.ClassAttributes
     if @image_loaded
       @game.canvas.drawImage(@image,
         @class().sx + frame * @class().width, @class().sy, @class().width,
-          @class().height, x, y, @class().width, @class().height)
+        @class().height, x, y, @class().width, @class().height)
 
