@@ -11,19 +11,17 @@ class fi.GameBoard extends fi.Board
   removeObject: (object)->
     @objects.remove object
 
+  foreachObject: (callback)->
+    for object in @objects
+      callback object if object != undefined
+    null
+
   load: (level)->
     @player = @addObject fi.Player,
       x: @game.width/2
       y: @game.height - fi.Player.height - 10
 
-    @addObject fi.Alien,
-      x: @game.width/2
-      y: @game.height/10
-
-  foreachObject: (callback)->
-    for object in @objects
-      callback object if object != undefined
-    null
+    @fleet = @addObject fi.Fleet
 
   clearBoard: ->
     @game.canvas.clearRect 0, 0, @game.width, @game.height

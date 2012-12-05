@@ -24,6 +24,7 @@ class fi.Loader
     define 'mod3', [
       'javascripts/engine/sprite.js',
       'javascripts/engine/board_object.js',
+      'javascripts/engine/board_object_group.js',
       'javascripts/engine/keyboard.js',
       'javascripts/engine/game.js',
       'javascripts/engine/message_board.js',
@@ -31,6 +32,7 @@ class fi.Loader
     ]
 
     define 'mod4', [
+      'javascripts/game/fleet.js'
       'javascripts/game/player.js',
       'javascripts/game/missile.js'
       'javascripts/game/alien.js'

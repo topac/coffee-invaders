@@ -10,30 +10,35 @@ class fi.BoardObject extends fi.ClassAttributes
     @classAttributes width: w, height: h
 
   constructor: (game)->
-    dimensions = null
+    @canBeDrew = false
     @width  = @class().width
     @height = @class().height
     @w = @width
     @h = @height
     @x = 0
     @y = 0
-    @image_loaded = false
     @_loadImage()
     @game = game
 
-  _loadImage: ->
-    @image = new Image()
-    @image.onload = => @image_loaded = true
-    @image.src = @class().url
-
   die: ->
+    @canBeDrew = false
     @game.board.removeObject @
 
   draw: (x=@x, y=@y, frame=@frame)->
-    return unless @image_loaded
+    return unless @canBeDrew
     frame = 0 unless frame
-    if @image_loaded
-      @game.canvas.drawImage(@image,
-        @class().sx + frame * @class().width, @class().sy, @class().width,
-        @class().height, x, y, @class().width, @class().height)
+    @game.canvas.drawImage(@image,
+      @class().sx + frame * @class().width, @class().sy, @class().width,
+      @class().height, x, y, @class().width, @class().height)
 
+  step: ->
+    throw "#step not implemented yet"
+
+  _hasImage: ->
+    @class().url
+
+  _loadImage: ->
+    return @canBeDrew = true unless @_hasImage()
+    @image = new Image()
+    @image.onload = => @canBeDrew = true
+    @image.src = @class().url
