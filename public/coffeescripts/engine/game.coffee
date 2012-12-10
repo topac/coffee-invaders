@@ -7,14 +7,18 @@ class fi.Game
     @keyboard = new fi.Keyboard()
     @interval = 23/1000
 
-  loadBoard: (BoardClassName, options)->
-    @board = new BoardClassName(@)
+  currentBoardIs: (BoardClassName)->
+    return if @board?.constructor is BoardClassName
+
+  loadBoard: (BoardClassName, options = {})->
+    # return if @currentBoardIs(BoardClassName) TODO - it works?
+    @board = new BoardClassName()
     @board.load options
 
-  startLoop: ->
-    return false if @loop
-    @loop = setInterval @_loop, @interval
+  start: ->
+    return false if @started
+    @started = setInterval @stepAndRender, @interval
 
-  _loop: =>
+  stepAndRender: =>
     @board.step @
     @board.render @canvas

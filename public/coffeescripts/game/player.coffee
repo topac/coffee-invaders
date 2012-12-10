@@ -1,26 +1,34 @@
 class fi.Player extends fi.BoardObject
-  @dimensions 26, 17
-  @sprite 'images/sprites.png', 0, 36
+  @width = 26
+  @height = 17
+
+  @sprite = 'images/sprites.png'
+  @sprite_sx = 0
+  @sprite_sy = 36
 
   constructor: ->
     super
-    @missilesDelay = @game.interval + 40
+    @missilesDelay = fi.game.interval + 40
     @reloading = @missilesDelay
-    @speed = @game.interval + 30
+    @speed = fi.game.interval + 30
+    @minX = 0
+    @maxX = fi.game.width - @constructor.width
 
   launchMissile: ->
     @reloading = @missilesDelay
-    @game.board.addObject fi.Missile,
-      x: @x + @w/2 - fi.Missile.width/2
-      y: @y - @h
+    fi.game.board.addObject fi.Missile,
+      x: @x + @constructor.width/2 - fi.Missile.width/2
+      y: @y - @constructor.height
       player: @
       dy: -100
 
   step: ->
-    @x -= @speed * @game.interval if @game.keyboard.isKeyPressed 'left'
-    @x += @speed * @game.interval if @game.keyboard.isKeyPressed 'right'
-    @x = 0 if @x < 0
-    @x = @game.width-@w if @x > @game.width - @w
+    @x -= @speed * fi.game.interval if fi.game.keyboard.isKeyPressed 'left'
+    @x += @speed * fi.game.interval if fi.game.keyboard.isKeyPressed 'right'
+    # Stay into boundaries
+    @x = @minX if @x < @minX
+    @x = @maxX if @x > @maxX
+
     @reloading -= 1
-    if @game.keyboard.isKeyPressed('fire') && @reloading <= 0
+    if fi.game.keyboard.isKeyPressed('fire') && @reloading <= 0
       @launchMissile()

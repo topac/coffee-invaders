@@ -1,14 +1,16 @@
 class fi.MessageBoard extends fi.Board
-  load: (options)->
-    @title = options.title
-    @subtitle = options.subtitle
-    @onFirePressed = options.onFirePressed
+  load: ->
+    @title = ''#"coffee-invaders"
+    @subtitle = ''#"the game"
+
+  loadGameBoard: ->
+    fi.game.loadBoard fi.GameBoard, 1
 
   step: ->
-    @onFirePressed() if @game.keyboard.isKeyPressed 'fire'
+    @loadGameBoard() if fi.game.keyboard.isKeyPressed 'fire'
 
   render: ->
-    canvas = @game.canvas
+    canvas = fi.game.canvas
     canvas.clearRect 0, 0, fi.game.width, fi.game.height
     canvas.font = "bold 40px arial"
     measure = canvas.measureText @title

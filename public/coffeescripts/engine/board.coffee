@@ -1,6 +1,5 @@
 class fi.Board
-  constructor: (game)->
-    @game = game
+  constructor: ->
 
   load: ->
     throw "#load not implemented yet"

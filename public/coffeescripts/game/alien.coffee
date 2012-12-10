@@ -1,6 +1,10 @@
 class fi.Alien extends fi.BoardObject
-  @dimensions 23, 18
-  @sprite 'images/sprites.png', 0, 0
+  @width = 23
+  @height = 18
+
+  @sprite = 'images/sprites.png'
+  @sprite_sx = 0
+  @sprite_sy = 0
 
   constructor: ->
     @frame = 0
@@ -8,3 +12,4 @@ class fi.Alien extends fi.BoardObject
 
   step: ->
     # do nothing
+    # overwritten by fleet#step

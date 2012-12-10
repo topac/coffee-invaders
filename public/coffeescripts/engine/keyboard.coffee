@@ -8,13 +8,13 @@ class fi.Keyboard
     @keys = {}
     @_listen()
 
-  isKeyPressed: (keyName)->
+  isKeyPressed: (keyName) ->
     !!@keys[keyName]
 
-  _keyUp: (event)=>
+  _keyUp: (event) =>
     @keys[KEY_CODES[event.keyCode]] = false if KEY_CODES[event.keyCode]
 
-  _keyDown: (event)=>
+  _keyDown: (event) =>
     @keys[KEY_CODES[event.keyCode]] = true if KEY_CODES[event.keyCode]
 
   _listen: ->

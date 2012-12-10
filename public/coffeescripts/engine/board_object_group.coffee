@@ -1,6 +1,6 @@
-class fi.BoardObjectGroup extends fi.ClassAttributes
-  constructor: (game)->
-    @game = game
+class fi.BoardObjectGroup
+  constructor: ->
+    @isAGroup = true # todo - find a more elegant way to check if is a group!
     @stepping = true
     @x = 0
     @y = 0

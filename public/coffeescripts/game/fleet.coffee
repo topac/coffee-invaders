@@ -1,8 +1,8 @@
 class fi.Fleet extends fi.BoardObjectGroup
-  @classAttributes {margin: 50}
+  @margin = 50
 
-  # TODO - refactor! @addObject method, and the fact that the contructor accept the game object
   constructor: ->
+    super
     @speed = 10
     @spaceBetweenAliens = 10
     @horizontalDirection = 1
@@ -10,17 +10,16 @@ class fi.Fleet extends fi.BoardObjectGroup
     @mx = 0
     @movingDownStep = false
     @marginRight = 60
-    super
     @height = fi.Alien.height + 25
     for i in [0..9]
-      @addObject @game.board.addObject fi.Alien,
+      @addObject fi.game.board.addObject fi.Alien,
         x: @marginRight + fi.Alien.width*i + @spaceBetweenAliens*i
         y: @height
 
     @x = @marginRight
 
   isCloseToBorders: ->
-    @objects.first().x < @class().margin || @objects.last().x  > (@game.width - @class().margin - fi.Alien.width - @spaceBetweenAliens)
+    @objects.first().x < @constructor.margin || @objects.last().x  > (fi.game.width - @constructor.margin - fi.Alien.width - @spaceBetweenAliens)
 
   shouldFlyDown: ->
     !@movingDownStep and @isCloseToBorders()
@@ -36,7 +35,7 @@ class fi.Fleet extends fi.BoardObjectGroup
 
   step: ->
     @_startStep()
-    @mx += @game.interval * @speed * @horizontalDirection
+    @mx += fi.game.interval * @speed * @horizontalDirection
     if @shouldMove()
       if @shouldFlyDown()
         @movingDownStep = true
