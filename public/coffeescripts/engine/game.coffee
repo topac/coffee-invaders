@@ -6,6 +6,7 @@ class fi.Game
     @height = @canvasEl.height()
     @keyboard = new fi.Keyboard()
     @interval = 60/1000
+    @lastAnimFrameRequestedAt = undefined
 
   currentBoardIs: (BoardClassName) ->
     return if @board?.constructor is BoardClassName
@@ -23,7 +24,13 @@ class fi.Game
   clear: ->
     @canvas.clearRect 0, 0, @width, @height
 
+  now: ->
+    new Date().getTime()
+
   stepAndRender: =>
+    now = @now()
+    @interval = (( now - (@lastAnimFrameRequestedAt || now) ) / 1000 ) + 30/1000
+    @lastAnimFrameRequestedAt = now
     @board.step @
     @board.render @canvas
     window.requestAnimationFrame @stepAndRender
