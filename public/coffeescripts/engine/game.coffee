@@ -1,5 +1,5 @@
 class fi.Game
-  constructor: (canvas)->
+  constructor: (canvas) ->
     @canvasEl = $ canvas
     @canvas = @canvasEl[0].getContext '2d'
     @width = @canvasEl.width()
@@ -7,10 +7,10 @@ class fi.Game
     @keyboard = new fi.Keyboard()
     @interval = 23/1000
 
-  currentBoardIs: (BoardClassName)->
+  currentBoardIs: (BoardClassName) ->
     return if @board?.constructor is BoardClassName
 
-  loadBoard: (BoardClassName, options = {})->
+  loadBoard: (BoardClassName, options = {}) ->
     # return if @currentBoardIs(BoardClassName) TODO - it works?
     @board = new BoardClassName()
     @board.load options
@@ -18,6 +18,9 @@ class fi.Game
   start: ->
     return false if @started
     @started = setInterval @stepAndRender, @interval
+
+  clear: ->
+    @canvas.clearRect 0, 0, @width, @height
 
   stepAndRender: =>
     @board.step @

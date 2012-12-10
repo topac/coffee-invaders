@@ -11,6 +11,9 @@ class fi.Keyboard
   isKeyPressed: (keyName) ->
     !!@keys[keyName]
 
+  isFirePressed: ->
+    @isKeyPressed 'fire'
+
   _keyUp: (event) =>
     @keys[KEY_CODES[event.keyCode]] = false if KEY_CODES[event.keyCode]
 

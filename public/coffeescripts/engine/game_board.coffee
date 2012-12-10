@@ -22,14 +22,11 @@ class fi.GameBoard extends fi.Board
 
     @fleet = @addObject fi.Fleet
 
-  clearBoard: ->
-    fi.game.canvas.clearRect 0, 0, fi.game.width, fi.game.height
-
   step: ->
     @foreachObject (object) -> object.step()
 
   render: ->
-    @clearBoard()
+    fi.game.clear()
     @foreachObject (object) -> object.draw()
 
   collision: (o1, o2) ->
