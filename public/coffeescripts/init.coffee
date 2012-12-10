@@ -12,7 +12,8 @@ class fi.Loader
 
   @_defineModules: ->
     define 'mod1', [
-      'javascripts/libs/jquery.js'
+      'javascripts/libs/jquery.js',
+      'javascripts/libs/request_animation_frame.js'
     ]
 
     define 'mod2', [
