@@ -5,8 +5,8 @@ class fi.Game
     @width = @canvasEl.width()
     @height = @canvasEl.height()
     @keyboard = new fi.Keyboard()
-    @interval = 60/1000
-    @lastAnimFrameRequestedAt = undefined
+    @interval = null
+    @lastAnimFrameRequestedAt = null
 
   currentBoardIs: (BoardClassName) ->
     return if @board?.constructor is BoardClassName
