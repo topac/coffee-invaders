@@ -17,9 +17,13 @@ class fi.Missile extends fi.BoardObject
     @x = fi.game.width - @constructor.width if @x > fi.game.width - @constructor.width
 
     alien = fi.game.board.collide @
-    alien.die() if alien
 
-    @die() if @isFarAway()
+    if alien
+      alien.die()
+      @die()
+
+    if @isFarAway()
+      @die()
 
   isFarAway: ->
     @y < 0 || @y > fi.game.height
