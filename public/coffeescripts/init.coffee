@@ -35,6 +35,7 @@ Sinv.scriptGroups = [
 class Sinv.Loader
   constructor: ->
     @_requireScriptGroup 0
+    @resolution = {width: 320, height: 480}
 
   _requireScriptGroup: (index) ->
     if Sinv.scriptGroups[index]
@@ -47,9 +48,17 @@ class Sinv.Loader
     @_startTheGame()
 
   _startTheGame: ->
+    @_createCanvasElement()
     window.Sinv.game = new Sinv.Game '#gameboard'
     Sinv.game.loadBoard Sinv.MessageBoard
     Sinv.game.start()
+
+  _createCanvasElement: ->
+    body = $ 'body'
+    canvasElement = $ '<canvas id="gameboard" height="'+@resolution.height+'px" width="'+@resolution.width+'px">'
+    canvasElement.appendTo body
+    body.css 'min-width', "#{@resolution.width}px"
+    body.css 'min-height', "#{@resolution.height}px"
 
 
 new Sinv.Loader()
