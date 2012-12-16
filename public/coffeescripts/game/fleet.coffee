@@ -1,4 +1,4 @@
-class fi.Fleet extends fi.BoardObjectGroup
+class Sinv.Fleet extends Sinv.BoardObjectGroup
   @margin = 50
 
   constructor: ->
@@ -10,24 +10,29 @@ class fi.Fleet extends fi.BoardObjectGroup
     @mx = 0
     @movingDownStep = false
     @marginRight = 60
-    @height = fi.Alien.height + 25
+    @height = Sinv.Alien.height + 25
+    @x = @marginRight
     for i in [0..9]
-      @addObject fi.game.board.addObject fi.Alien,
-        x: @marginRight + fi.Alien.width*i + @spaceBetweenAliens*i
+      @addObject Sinv.game.board.addObject Sinv.Alien,
+        x: @marginRight + Sinv.Alien.width*i + @spaceBetweenAliens*i
         y: @height
 
-    @x = @marginRight
+    # for i in [0..9]
+    #   @addObject Sinv.game.board.addObject Sinv.Alien,
+    #     x: @marginRight + Sinv.Alien.width*i + @spaceBetweenAliens*i
+    #     y: @height + 30
 
   isCloseToBorders: ->
-    @objects.first().x < @constructor.margin || @objects.last().x  > (fi.game.width - @constructor.margin - fi.Alien.width - @spaceBetweenAliens)
+    @objects.first().x < @constructor.margin || @objects.last().x  > (Sinv.game.width - @constructor.margin - Sinv.Alien.width - @spaceBetweenAliens)
 
   shouldFlyDown: ->
     !@movingDownStep and @isCloseToBorders()
 
   flyDown: ->
-    @height += fi.Alien.height + 2
+    dy = Sinv.Alien.height + 2
+    @height += dy
     @_foreachObject (alien) =>
-      alien.y = @height
+      alien.y += dy
     @horizontalDirection *= -1
 
   shouldMove: ->
@@ -35,7 +40,7 @@ class fi.Fleet extends fi.BoardObjectGroup
 
   step: ->
     @_startStep()
-    @mx += fi.game.interval * @speed * @horizontalDirection
+    @mx += Sinv.game.interval * @speed * @horizontalDirection
     if @shouldMove()
       if @shouldFlyDown()
         @movingDownStep = true

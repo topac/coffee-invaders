@@ -1,17 +1,17 @@
-class fi.MessageBoard extends fi.Board
+class Sinv.MessageBoard extends Sinv.Board
   load: ->
     @title = "coffee-invaders"
     @subtitle = "the game"
 
   loadGameBoard: ->
-    fi.game.loadBoard fi.GameBoard
+    Sinv.game.loadBoard Sinv.GameBoard
 
   step: ->
-    @loadGameBoard() if fi.game.keyboard.isFirePressed()
+    @loadGameBoard() if Sinv.game.keyboard.isFirePressed()
 
   render: ->
-    @canvas = fi.game.canvas
-    fi.game.clear()
+    @canvas = Sinv.game.canvas
+    Sinv.game.clear()
     @_renderTitle()
     @_renderSubtitle()
 
@@ -19,9 +19,9 @@ class fi.MessageBoard extends fi.Board
     @canvas.font = "bold 40px arial"
     measure = @canvas.measureText @title
     @canvas.fillStyle = "#FFFFFF"
-    @canvas.fillText @title, fi.game.width/2 - measure.width/2,fi.game.height/2
+    @canvas.fillText @title, Sinv.game.width/2 - measure.width/2,Sinv.game.height/2
 
   _renderSubtitle: ->
     @canvas.font = "bold 20px arial"
     measure2 = @canvas.measureText @subtitle
-    @canvas.fillText @subtitle, fi.game.width/2 - measure2.width/2,fi.game.height/2 + 40
+    @canvas.fillText @subtitle, Sinv.game.width/2 - measure2.width/2,Sinv.game.height/2 + 40

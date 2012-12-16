@@ -1,4 +1,4 @@
-class fi.BoardObjectGroup
+class Sinv.BoardObjectGroup
   constructor: ->
     @isAGroup = true # todo - find a more elegant way to check if is a group!
     @stepping = true

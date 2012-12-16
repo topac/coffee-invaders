@@ -1,10 +1,10 @@
-class fi.Game
+class Sinv.Game
   constructor: (canvas) ->
     @canvasEl = $ canvas
     @canvas = @canvasEl[0].getContext '2d'
     @width = @canvasEl.width()
     @height = @canvasEl.height()
-    @keyboard = new fi.Keyboard()
+    @keyboard = new Sinv.Keyboard()
     @interval = null
     @lastAnimFrameRequestedAt = null
 

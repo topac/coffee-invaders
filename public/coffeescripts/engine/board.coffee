@@ -1,4 +1,4 @@
-class fi.Board
+class Sinv.Board
   load: ->
     throw "#load not implemented yet"
 

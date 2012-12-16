@@ -1,4 +1,4 @@
-class fi.BoardObject
+class Sinv.BoardObject
   constructor: ->
     @canBeDrew = false
     @x = 0
@@ -8,12 +8,12 @@ class fi.BoardObject
 
   die: ->
     @canBeDrew = false
-    fi.game.board.removeObject @
+    Sinv.game.board.removeObject @
 
   draw: (x=@x, y=@y, frame=@frame) ->
     return unless @canBeDrew
     frame = 0 unless frame
-    fi.game.canvas.drawImage(@image,
+    Sinv.game.canvas.drawImage(@image,
       @constructor.sprite_sx + frame * @constructor.width, @constructor.sprite_sy, @constructor.width,
       @constructor.height, x, y, @constructor.width, @constructor.height)
 

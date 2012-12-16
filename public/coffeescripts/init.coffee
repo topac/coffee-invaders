@@ -1,12 +1,12 @@
 # Globals stuff
-window.fi =
+window.Sinv =
   config: {}
 
 window.puts = (string) ->
   console?.log? string
 
 
-fi.scriptGroups = [
+Sinv.scriptGroups = [
   [
     'javascripts/libs/jquery.js',
     'javascripts/libs/request_animation_frame.js'
@@ -32,13 +32,13 @@ fi.scriptGroups = [
 ]
 
 
-class fi.Loader
+class Sinv.Loader
   constructor: ->
     @_requireScriptGroup 0
 
   _requireScriptGroup: (index) ->
-    if fi.scriptGroups[index]
-      require fi.scriptGroups[index], =>
+    if Sinv.scriptGroups[index]
+      require Sinv.scriptGroups[index], =>
         @_requireScriptGroup index + 1
     else
       $ @_onDocumentReady
@@ -47,9 +47,9 @@ class fi.Loader
     @_startTheGame()
 
   _startTheGame: ->
-    window.fi.game = new fi.Game '#gameboard'
-    fi.game.loadBoard fi.MessageBoard
-    fi.game.start()
+    window.Sinv.game = new Sinv.Game '#gameboard'
+    Sinv.game.loadBoard Sinv.MessageBoard
+    Sinv.game.start()
 
 
-new fi.Loader()
+new Sinv.Loader()

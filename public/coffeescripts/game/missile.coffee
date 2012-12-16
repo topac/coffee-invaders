@@ -1,4 +1,4 @@
-class fi.Missile extends fi.BoardObject
+class Sinv.Missile extends Sinv.BoardObject
   @width = 3
   @height = 14
 
@@ -12,11 +12,11 @@ class fi.Missile extends fi.BoardObject
     super
 
   step: ->
-    @y += @dy * fi.game.interval
+    @y += @dy * Sinv.game.interval
     @x = 0 if @x < 0
-    @x = fi.game.width - @constructor.width if @x > fi.game.width - @constructor.width
+    @x = Sinv.game.width - @constructor.width if @x > Sinv.game.width - @constructor.width
 
-    alien = fi.game.board.collide @
+    alien = Sinv.game.board.collide @
 
     if alien
       alien.die()
@@ -26,4 +26,4 @@ class fi.Missile extends fi.BoardObject
       @die()
 
   isFarAway: ->
-    @y < 0 || @y > fi.game.height
+    @y < 0 || @y > Sinv.game.height

@@ -1,4 +1,4 @@
-class fi.GameBoard extends fi.Board
+class Sinv.GameBoard extends Sinv.Board
   addObject: (className, options={}) ->
     @objects ||= []
     object = new className()
@@ -16,17 +16,17 @@ class fi.GameBoard extends fi.Board
     null
 
   load: (level) ->
-    @player = @addObject fi.Player,
-      x: fi.game.width/2
-      y: fi.game.height - fi.Player.height - 10
+    @player = @addObject Sinv.Player,
+      x: Sinv.game.width/2
+      y: Sinv.game.height - Sinv.Player.height - 10
 
-    @fleet = @addObject fi.Fleet
+    @fleet = @addObject Sinv.Fleet
 
   step: ->
     @foreachObject (object) -> object.step()
 
   render: ->
-    fi.game.clear()
+    Sinv.game.clear()
     @foreachObject (object) -> object.draw()
 
   collision: (o1, o2) ->

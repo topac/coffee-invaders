@@ -1,4 +1,4 @@
-class fi.Alien extends fi.BoardObject
+class Sinv.Alien extends Sinv.BoardObject
   @width = 23
   @height = 18
 

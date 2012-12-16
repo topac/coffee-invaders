@@ -1,4 +1,4 @@
-class fi.Keyboard
+class Sinv.Keyboard
   KEY_CODES =
     37: 'left'
     39: 'right'
