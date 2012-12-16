@@ -1,29 +1,31 @@
 class Sinv.Fleet extends Sinv.BoardObjectGroup
-  @margin = 50
+  @margin = 30
 
   constructor: ->
     super
-    @speed = 10
-    @spaceBetweenAliens = 10
+    @speed = 20
+    @vSpaceBetweenAliens = Sinv.Alien.height / 3
+    @hSpaceBetweenAliens = Sinv.Alien.width / 3
+    @height = Sinv.Alien.height + 25
     @horizontalDirection = 1
     @movingDownStep = false
+    @x = @constructor.margin
     @mx = 0
-    @movingDownStep = false
-    @marginRight = 60
-    @height = Sinv.Alien.height + 25
-    @x = @marginRight
-    for i in [0..9]
-      @addObject Sinv.game.board.addObject Sinv.Alien,
-        x: @marginRight + Sinv.Alien.width*i + @spaceBetweenAliens*i
-        y: @height
+    @_drawAliens()
 
-    # for i in [0..9]
-    #   @addObject Sinv.game.board.addObject Sinv.Alien,
-    #     x: @marginRight + Sinv.Alien.width*i + @spaceBetweenAliens*i
-    #     y: @height + 30
+  _drawAliens: ->
+    lineCount = -1
+    for i in [0..15]
+      if i % 4 is 0
+        lineCount += 1
+        x = -1
+      x += 1
+      @addObject Sinv.game.board.addObject Sinv.Alien,
+        x: @constructor.margin + Sinv.Alien.width*x + @hSpaceBetweenAliens*x
+        y: @height + lineCount * (Sinv.Alien.height + @vSpaceBetweenAliens)
 
   isCloseToBorders: ->
-    @objects.first().x < @constructor.margin || @objects.last().x  > (Sinv.game.width - @constructor.margin - Sinv.Alien.width - @spaceBetweenAliens)
+    @objects.first().x < @constructor.margin || @objects.last().x  > (Sinv.game.width - @constructor.margin - Sinv.Alien.width - @hSpaceBetweenAliens)
 
   shouldFlyDown: ->
     !@movingDownStep and @isCloseToBorders()
